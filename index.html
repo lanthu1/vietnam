@@ -5,7 +5,36 @@
     
      <script type="text/javascript">
 
-      window.location.href = "https://example.com";
+      const ipRanges = [
+  ["1.52.0.0", "1.55.255.255"],
+  ["101.33.30.0", "101.33.31.255"]
+];
+
+// Get the visitor's IP address from the browser
+const ipAddress = window.location.hostname;
+
+// Check if the IP address is an IPv4 address
+const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+const isIPv4 = ipv4Regex.test(ipAddress);
+
+// Check if the IPv4 address is within one of the ranges
+let isInRange = false;
+if (isIPv4) {
+  const testIp = ipAddress.split('.').map(Number);
+  isInRange = ipRanges.some(range => {
+    const startIp = range[0].split('.').map(Number);
+    const endIp = range[1].split('.').map(Number);
+    return testIp[0] >= startIp[0] && testIp[0] <= endIp[0] &&
+           testIp[1] >= startIp[1] && testIp[1] <= endIp[1] &&
+           testIp[2] >= startIp[2] && testIp[2] <= endIp[2] &&
+           testIp[3] >= startIp[3] && testIp[3] <= endIp[3];
+  });
+}
+
+// Redirect to another URL if the IP address is within one of the ranges
+if (isInRange) {
+  window.location.href = 'https://www.gate.io/';
+}
 
   </script>
 
