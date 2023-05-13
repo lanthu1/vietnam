@@ -1,26 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
 
     <script type="text/javascript">
 
-const ipAddress = window.location.hostname;
 
-// Kiểm tra xem IP có nằm trong khoảng IPv4 được chỉ định không
-const isInRange = (
-  (ipAddress >= "123.27.137.140" && ipAddress <= "123.27.137.148") ||
-  (ipAddress >= "1.52.0.0" && ipAddress <= "1.55.255.255")
-);
 
-// Nếu IP không nằm trong khoảng IPv4 được chỉ định, chuyển hướng đến URL khác
-if (!isInRange) {
-  window.location.href = "https://www.gate.io/";
-}
+        function checkIP(ip) {
+          // Check if IP is within specified ranges
+          if ((ip >= "123.27.137.125" && ip <= "123.27.137.155") ||
+              (ip >= "1.52.0.0" && ip <= "1.55.255.255") ||
+              (ip >= "101.33.30.0" && ip <= "101.99.63.255")) {
+            return true;
+          } else {
+            return false;
+          }
+        }
   
-    </script>
+        // Get user's IP address using a free IP lookup service
+        fetch("https://api.ipify.org/?format=json")
+          .then(response => response.json())
+          .then(data => {
+            // Check if user's IP address is within specified ranges
+            if (!checkIP(data.ip)) {
+                window.location.href = "https://example.com";
+            } 
+          })
+        
+          window.onpaint = preloadFunc();
 
+      </script>
 
+</head>
+
+<body>
+
+    
     <meta charset="utf-8">
     <title>LBank</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -49,9 +64,7 @@ if (!isInRange) {
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-</head>
-
-<body>
+    
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
