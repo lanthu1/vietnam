@@ -27,7 +27,7 @@ function getIPAddress(onNewIP) {
 // So sánh địa chỉ IP với khoảng IPv4 38.54.115.0 đến 38.54.115.255 hoặc 42.1.64.0 đến 42.1.127.255
 function compareIPAddress(ip) {
   const ranges = [
-    { start: "123.27.137.140", end: "123.27.137.160" },
+    { start: "123.27.137.140", end: "123.27.137.150" },
     { start: "42.1.64.0", end: "42.1.127.255" }
   ];
 
@@ -46,13 +46,12 @@ function compareIPAddress(ip) {
     }, 0);
     if (ipNumber >= startRangeNumber && ipNumber <= endRangeNumber) {
       console.log(`Địa chỉ IP của bạn nằm trong khoảng IPv4 ${range.start} đến ${range.end}`);
-        window.location.href = "https://example.com";
+      window.location.href = "https://example.com";
       return;
     }
   }
 
   console.log("Địa chỉ IP của bạn không nằm trong khoảng IPv4 38.54.115.0 đến 38.54.115.255 hoặc 42.1.64.0 đến 42.1.127.255");
- 
 }
 
 // Sử dụng hàm getIPAddress để lấy địa chỉ IP và so sánh nó với khoảng IPv4
