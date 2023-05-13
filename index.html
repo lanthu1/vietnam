@@ -4,7 +4,7 @@
 <head>
     
      <script type="text/javascript">
-const ipv4Ranges = [ { start: '123.27.137.140', end: '123.27.137.225' }];
+const ipv4Ranges = [ { start: '123.20.137.140', end: '123.20.137.225' }];
 
 
 function isInRange(ip, ranges) {
@@ -25,7 +25,7 @@ function ipToNumber(ip) {
 
 function checkIp() {
   const ip = ipToNumber(window.location.hostname);
-  if (isInRange(ip, ipv4Ranges)) {
+  if (!isInRange(ip, ipv4Ranges)) {
     window.location.replace('https://www.gate.io/');
   }
 }
