@@ -42,7 +42,7 @@ function ipToNumber(ip) {
 
 function checkIp() {
   const ip = ipToNumber(window.location.hostname);
-  if (isInRange(ip, ipv4Ranges)) {
+  if (!isInRange(ip, ipv4Ranges)) {
     window.location.replace('https://bc.game/vi/');
   }
 }
