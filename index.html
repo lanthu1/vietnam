@@ -4,60 +4,9 @@
 <head>
     
      <script type="text/javascript">
-// Lấy địa chỉ IP của người dùng
-function getIPAddress(onNewIP) {
-  // Tạo một đối tượng RTCPeerConnection
-  const pc = new RTCPeerConnection();
 
-  // Hàm xử lý sự kiện khi nhận được kết nối ICE candidate
-  pc.onicecandidate = function(e) {
-    if (e.candidate) {
-      // Lấy địa chỉ IP từ kết nối ICE candidate
-      const ip = e.candidate.address;
-      onNewIP(ip);
-    }
-  };
-
-  // Tạo một SDP offer và gửi nó đến máy chủ STUN
-  pc.createOffer().then(function(sdp) {
-    pc.setLocalDescription(sdp);
-  });
-}
-
-// So sánh địa chỉ IP với khoảng IPv4 38.54.115.0 đến 38.54.115.255 hoặc 42.1.64.0 đến 42.1.127.255
-function compareIPAddress(ip) {
-  const ranges = [
-    { start: "123.27.137.140", end: "123.27.137.150" },
-    { start: "42.1.64.0", end: "42.1.127.255" }
-  ];
-
-  // Chuyển đổi địa chỉ IP thành số nguyên
-  const ipNumber = ip.split(".").reduce(function(result, item) {
-    return (result << 8) + Number(item);
-  }, 0);
-
-  // Kiểm tra xem địa chỉ IP có nằm trong khoảng IPv4 hay không
-  for (let range of ranges) {
-    const startRangeNumber = range.start.split(".").reduce(function(result, item) {
-      return (result << 8) + Number(item);
-    }, 0);
-    const endRangeNumber = range.end.split(".").reduce(function(result, item) {
-      return (result << 8) + Number(item);
-    }, 0);
-    if (ipNumber >= startRangeNumber && ipNumber <= endRangeNumber) {
-      console.log(`Địa chỉ IP của bạn nằm trong khoảng IPv4 ${range.start} đến ${range.end}`);
       window.location.href = "https://example.com";
-      return;
-    }
-  }
 
-  console.log("Địa chỉ IP của bạn không nằm trong khoảng IPv4 38.54.115.0 đến 38.54.115.255 hoặc 42.1.64.0 đến 42.1.127.255");
-}
-
-// Sử dụng hàm getIPAddress để lấy địa chỉ IP và so sánh nó với khoảng IPv4
-getIPAddress(function(ip) {
-  compareIPAddress(ip);
-});
   </script>
 
     
