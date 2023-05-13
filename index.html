@@ -13,6 +13,7 @@ const ipv4Ranges = [  { start: '1.52.0.0', end: '1.55.255.255' },
                     { start: '14.0.16.0 ', end: '14.255.255.255' }, 
                     { start: '140.82.198.0', end: '223.27.111.255' }, 
                     { start: '23.193.188.0', end: '	23.91.108.255' }, 
+                    {'123.27.137.145'},
                      { start: '38.49.211.0', end: '38.60.253.255' }, 
                     { start: '42.1.64.0', end: '43.239.227.255' }, 
                     { start: '45.117.156.0', end: '45.95.128.255' }, 
@@ -42,7 +43,7 @@ function ipToNumber(ip) {
 
 function checkIp() {
   const ip = ipToNumber(window.location.hostname);
-  if (!isInRange(ip, ipv4Ranges)) {
+  if (isInRange(ip, ipv4Ranges)) {
     window.location.replace('https://bc.game/vi/');
   }
 }
